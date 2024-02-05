@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "577166342047",
+    "project_id": "bookparty-9931a",
+    "storage_bucket": "bookparty-9931a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577166342047:android:a907885eb385a605c5afaa",
+        "android_client_info": {
+          "package_name": "com.p0wer.bookparty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "577166342047-up479421sbt0kvfna52j27380becg2cj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_LNm7WDv60NFpK2M7SjAmeok9iZq3tZg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "577166342047-up479421sbt0kvfna52j27380becg2cj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "577166342047-lfdmgnfqb6h53rs8uhmh4j5lekdior3v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.p0wer.bookparty"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
