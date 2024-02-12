@@ -9,6 +9,9 @@ final bookPartyTheme = ThemeData(
   appBarTheme: const AppBarTheme(
     backgroundColor: backgroundColor,
     elevation: 0,
+    iconTheme: IconThemeData(
+      color: Colors.white, //change your color here
+    ),
   ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,

@@ -20,18 +20,21 @@ mixin _$RoomFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() roomNotFound,
     required TResult Function() roomNotCreated,
+    required TResult Function() notConectedToServer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? roomNotFound,
     TResult? Function()? roomNotCreated,
+    TResult? Function()? notConectedToServer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? roomNotFound,
     TResult Function()? roomNotCreated,
+    TResult Function()? notConectedToServer,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$RoomFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(RoomNotFound value) roomNotFound,
     required TResult Function(RoomNotCreated value) roomNotCreated,
+    required TResult Function(NotConectedToServer value) notConectedToServer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(RoomNotFound value)? roomNotFound,
     TResult? Function(RoomNotCreated value)? roomNotCreated,
+    TResult? Function(NotConectedToServer value)? notConectedToServer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(RoomNotFound value)? roomNotFound,
     TResult Function(RoomNotCreated value)? roomNotCreated,
+    TResult Function(NotConectedToServer value)? notConectedToServer,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,6 +120,7 @@ class _$RoomNotFoundImpl implements RoomNotFound {
   TResult when<TResult extends Object?>({
     required TResult Function() roomNotFound,
     required TResult Function() roomNotCreated,
+    required TResult Function() notConectedToServer,
   }) {
     return roomNotFound();
   }
@@ -123,6 +130,7 @@ class _$RoomNotFoundImpl implements RoomNotFound {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? roomNotFound,
     TResult? Function()? roomNotCreated,
+    TResult? Function()? notConectedToServer,
   }) {
     return roomNotFound?.call();
   }
@@ -132,6 +140,7 @@ class _$RoomNotFoundImpl implements RoomNotFound {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? roomNotFound,
     TResult Function()? roomNotCreated,
+    TResult Function()? notConectedToServer,
     required TResult orElse(),
   }) {
     if (roomNotFound != null) {
@@ -145,6 +154,7 @@ class _$RoomNotFoundImpl implements RoomNotFound {
   TResult map<TResult extends Object?>({
     required TResult Function(RoomNotFound value) roomNotFound,
     required TResult Function(RoomNotCreated value) roomNotCreated,
+    required TResult Function(NotConectedToServer value) notConectedToServer,
   }) {
     return roomNotFound(this);
   }
@@ -154,6 +164,7 @@ class _$RoomNotFoundImpl implements RoomNotFound {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(RoomNotFound value)? roomNotFound,
     TResult? Function(RoomNotCreated value)? roomNotCreated,
+    TResult? Function(NotConectedToServer value)? notConectedToServer,
   }) {
     return roomNotFound?.call(this);
   }
@@ -163,6 +174,7 @@ class _$RoomNotFoundImpl implements RoomNotFound {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(RoomNotFound value)? roomNotFound,
     TResult Function(RoomNotCreated value)? roomNotCreated,
+    TResult Function(NotConectedToServer value)? notConectedToServer,
     required TResult orElse(),
   }) {
     if (roomNotFound != null) {
@@ -216,6 +228,7 @@ class _$RoomNotCreatedImpl implements RoomNotCreated {
   TResult when<TResult extends Object?>({
     required TResult Function() roomNotFound,
     required TResult Function() roomNotCreated,
+    required TResult Function() notConectedToServer,
   }) {
     return roomNotCreated();
   }
@@ -225,6 +238,7 @@ class _$RoomNotCreatedImpl implements RoomNotCreated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? roomNotFound,
     TResult? Function()? roomNotCreated,
+    TResult? Function()? notConectedToServer,
   }) {
     return roomNotCreated?.call();
   }
@@ -234,6 +248,7 @@ class _$RoomNotCreatedImpl implements RoomNotCreated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? roomNotFound,
     TResult Function()? roomNotCreated,
+    TResult Function()? notConectedToServer,
     required TResult orElse(),
   }) {
     if (roomNotCreated != null) {
@@ -247,6 +262,7 @@ class _$RoomNotCreatedImpl implements RoomNotCreated {
   TResult map<TResult extends Object?>({
     required TResult Function(RoomNotFound value) roomNotFound,
     required TResult Function(RoomNotCreated value) roomNotCreated,
+    required TResult Function(NotConectedToServer value) notConectedToServer,
   }) {
     return roomNotCreated(this);
   }
@@ -256,6 +272,7 @@ class _$RoomNotCreatedImpl implements RoomNotCreated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(RoomNotFound value)? roomNotFound,
     TResult? Function(RoomNotCreated value)? roomNotCreated,
+    TResult? Function(NotConectedToServer value)? notConectedToServer,
   }) {
     return roomNotCreated?.call(this);
   }
@@ -265,6 +282,7 @@ class _$RoomNotCreatedImpl implements RoomNotCreated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(RoomNotFound value)? roomNotFound,
     TResult Function(RoomNotCreated value)? roomNotCreated,
+    TResult Function(NotConectedToServer value)? notConectedToServer,
     required TResult orElse(),
   }) {
     if (roomNotCreated != null) {
@@ -276,4 +294,113 @@ class _$RoomNotCreatedImpl implements RoomNotCreated {
 
 abstract class RoomNotCreated implements RoomFailure {
   const factory RoomNotCreated() = _$RoomNotCreatedImpl;
+}
+
+/// @nodoc
+abstract class _$$NotConectedToServerImplCopyWith<$Res> {
+  factory _$$NotConectedToServerImplCopyWith(_$NotConectedToServerImpl value,
+          $Res Function(_$NotConectedToServerImpl) then) =
+      __$$NotConectedToServerImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$NotConectedToServerImplCopyWithImpl<$Res>
+    extends _$RoomFailureCopyWithImpl<$Res, _$NotConectedToServerImpl>
+    implements _$$NotConectedToServerImplCopyWith<$Res> {
+  __$$NotConectedToServerImplCopyWithImpl(_$NotConectedToServerImpl _value,
+      $Res Function(_$NotConectedToServerImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$NotConectedToServerImpl implements NotConectedToServer {
+  const _$NotConectedToServerImpl();
+
+  @override
+  String toString() {
+    return 'RoomFailure.notConectedToServer()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NotConectedToServerImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() roomNotFound,
+    required TResult Function() roomNotCreated,
+    required TResult Function() notConectedToServer,
+  }) {
+    return notConectedToServer();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? roomNotFound,
+    TResult? Function()? roomNotCreated,
+    TResult? Function()? notConectedToServer,
+  }) {
+    return notConectedToServer?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? roomNotFound,
+    TResult Function()? roomNotCreated,
+    TResult Function()? notConectedToServer,
+    required TResult orElse(),
+  }) {
+    if (notConectedToServer != null) {
+      return notConectedToServer();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RoomNotFound value) roomNotFound,
+    required TResult Function(RoomNotCreated value) roomNotCreated,
+    required TResult Function(NotConectedToServer value) notConectedToServer,
+  }) {
+    return notConectedToServer(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RoomNotFound value)? roomNotFound,
+    TResult? Function(RoomNotCreated value)? roomNotCreated,
+    TResult? Function(NotConectedToServer value)? notConectedToServer,
+  }) {
+    return notConectedToServer?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RoomNotFound value)? roomNotFound,
+    TResult Function(RoomNotCreated value)? roomNotCreated,
+    TResult Function(NotConectedToServer value)? notConectedToServer,
+    required TResult orElse(),
+  }) {
+    if (notConectedToServer != null) {
+      return notConectedToServer(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NotConectedToServer implements RoomFailure {
+  const factory NotConectedToServer() = _$NotConectedToServerImpl;
 }

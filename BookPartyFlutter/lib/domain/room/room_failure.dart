@@ -6,4 +6,5 @@ part 'room_failure.freezed.dart';
 sealed class RoomFailure with _$RoomFailure {
   const factory RoomFailure.roomNotFound() = RoomNotFound;
   const factory RoomFailure.roomNotCreated() = RoomNotCreated;
+  const factory RoomFailure.notConectedToServer() = NotConectedToServer;
 }

@@ -1,7 +1,5 @@
 import 'package:bookparty/domain/core/value_objects.dart';
-import 'package:bookparty/domain/room/room.dart';
 import 'package:bookparty/domain/room/room_user.dart';
-import 'package:bookparty/infrastructure/auth/user_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'room_user_dto.freezed.dart';

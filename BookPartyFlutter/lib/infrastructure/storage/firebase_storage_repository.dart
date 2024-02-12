@@ -87,11 +87,11 @@ class FirebaseStorageFacade implements IStorageRepository {
 
       books.add(
         Book(
-          title: fileName,
-          author: 'author',
-          description: 'description',
-          thumbnail: thumbnailURL,
-        ),
+            title: fileName,
+            author: 'author',
+            description: 'description',
+            thumbnail: thumbnailURL,
+            url: await item.getDownloadURL()),
       );
     }
 

@@ -20,8 +20,11 @@ RoomDto _$RoomDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RoomDto {
+  bool get hasStarted => throw _privateConstructorUsedError;
+  int get pageNumber => throw _privateConstructorUsedError;
   int get roomID => throw _privateConstructorUsedError;
   List<RoomUserDto> get users => throw _privateConstructorUsedError;
+  Book get book => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +36,14 @@ abstract class $RoomDtoCopyWith<$Res> {
   factory $RoomDtoCopyWith(RoomDto value, $Res Function(RoomDto) then) =
       _$RoomDtoCopyWithImpl<$Res, RoomDto>;
   @useResult
-  $Res call({int roomID, List<RoomUserDto> users});
+  $Res call(
+      {bool hasStarted,
+      int pageNumber,
+      int roomID,
+      List<RoomUserDto> users,
+      Book book});
+
+  $BookCopyWith<$Res> get book;
 }
 
 /// @nodoc
@@ -49,10 +59,21 @@ class _$RoomDtoCopyWithImpl<$Res, $Val extends RoomDto>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? hasStarted = null,
+    Object? pageNumber = null,
     Object? roomID = null,
     Object? users = null,
+    Object? book = null,
   }) {
     return _then(_value.copyWith(
+      hasStarted: null == hasStarted
+          ? _value.hasStarted
+          : hasStarted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pageNumber: null == pageNumber
+          ? _value.pageNumber
+          : pageNumber // ignore: cast_nullable_to_non_nullable
+              as int,
       roomID: null == roomID
           ? _value.roomID
           : roomID // ignore: cast_nullable_to_non_nullable
@@ -61,7 +82,19 @@ class _$RoomDtoCopyWithImpl<$Res, $Val extends RoomDto>
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
               as List<RoomUserDto>,
+      book: null == book
+          ? _value.book
+          : book // ignore: cast_nullable_to_non_nullable
+              as Book,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BookCopyWith<$Res> get book {
+    return $BookCopyWith<$Res>(_value.book, (value) {
+      return _then(_value.copyWith(book: value) as $Val);
+    });
   }
 }
 
@@ -72,7 +105,15 @@ abstract class _$$RoomDtoImplCopyWith<$Res> implements $RoomDtoCopyWith<$Res> {
       __$$RoomDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int roomID, List<RoomUserDto> users});
+  $Res call(
+      {bool hasStarted,
+      int pageNumber,
+      int roomID,
+      List<RoomUserDto> users,
+      Book book});
+
+  @override
+  $BookCopyWith<$Res> get book;
 }
 
 /// @nodoc
@@ -86,10 +127,21 @@ class __$$RoomDtoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? hasStarted = null,
+    Object? pageNumber = null,
     Object? roomID = null,
     Object? users = null,
+    Object? book = null,
   }) {
     return _then(_$RoomDtoImpl(
+      hasStarted: null == hasStarted
+          ? _value.hasStarted
+          : hasStarted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pageNumber: null == pageNumber
+          ? _value.pageNumber
+          : pageNumber // ignore: cast_nullable_to_non_nullable
+              as int,
       roomID: null == roomID
           ? _value.roomID
           : roomID // ignore: cast_nullable_to_non_nullable
@@ -98,6 +150,10 @@ class __$$RoomDtoImplCopyWithImpl<$Res>
           ? _value._users
           : users // ignore: cast_nullable_to_non_nullable
               as List<RoomUserDto>,
+      book: null == book
+          ? _value.book
+          : book // ignore: cast_nullable_to_non_nullable
+              as Book,
     ));
   }
 }
@@ -105,13 +161,22 @@ class __$$RoomDtoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RoomDtoImpl extends _RoomDto {
-  _$RoomDtoImpl({required this.roomID, required final List<RoomUserDto> users})
+  _$RoomDtoImpl(
+      {required this.hasStarted,
+      required this.pageNumber,
+      required this.roomID,
+      required final List<RoomUserDto> users,
+      required this.book})
       : _users = users,
         super._();
 
   factory _$RoomDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$RoomDtoImplFromJson(json);
 
+  @override
+  final bool hasStarted;
+  @override
+  final int pageNumber;
   @override
   final int roomID;
   final List<RoomUserDto> _users;
@@ -123,8 +188,11 @@ class _$RoomDtoImpl extends _RoomDto {
   }
 
   @override
+  final Book book;
+
+  @override
   String toString() {
-    return 'RoomDto(roomID: $roomID, users: $users)';
+    return 'RoomDto(hasStarted: $hasStarted, pageNumber: $pageNumber, roomID: $roomID, users: $users, book: $book)';
   }
 
   @override
@@ -132,14 +200,19 @@ class _$RoomDtoImpl extends _RoomDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RoomDtoImpl &&
+            (identical(other.hasStarted, hasStarted) ||
+                other.hasStarted == hasStarted) &&
+            (identical(other.pageNumber, pageNumber) ||
+                other.pageNumber == pageNumber) &&
             (identical(other.roomID, roomID) || other.roomID == roomID) &&
-            const DeepCollectionEquality().equals(other._users, _users));
+            const DeepCollectionEquality().equals(other._users, _users) &&
+            (identical(other.book, book) || other.book == book));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, roomID, const DeepCollectionEquality().hash(_users));
+  int get hashCode => Object.hash(runtimeType, hasStarted, pageNumber, roomID,
+      const DeepCollectionEquality().hash(_users), book);
 
   @JsonKey(ignore: true)
   @override
@@ -157,16 +230,25 @@ class _$RoomDtoImpl extends _RoomDto {
 
 abstract class _RoomDto extends RoomDto {
   factory _RoomDto(
-      {required final int roomID,
-      required final List<RoomUserDto> users}) = _$RoomDtoImpl;
+      {required final bool hasStarted,
+      required final int pageNumber,
+      required final int roomID,
+      required final List<RoomUserDto> users,
+      required final Book book}) = _$RoomDtoImpl;
   _RoomDto._() : super._();
 
   factory _RoomDto.fromJson(Map<String, dynamic> json) = _$RoomDtoImpl.fromJson;
 
   @override
+  bool get hasStarted;
+  @override
+  int get pageNumber;
+  @override
   int get roomID;
   @override
   List<RoomUserDto> get users;
+  @override
+  Book get book;
   @override
   @JsonKey(ignore: true)
   _$$RoomDtoImplCopyWith<_$RoomDtoImpl> get copyWith =>

@@ -1,5 +1,6 @@
 import 'package:bookparty/application/storage/storage_bloc/storage_bloc.dart';
 import 'package:bookparty/presentation/home/book_details.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,10 +15,9 @@ class BookWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.push(
-        context,
+      onTap: () => Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => BookDetails(
+          builder: (newcontext) => BookDetails(
             index: index,
             book: book,
           ),
@@ -31,8 +31,8 @@ class BookWidget extends StatelessWidget {
           children: [
             Hero(
               tag: 'Book$index',
-              child: Image.network(
-                book.thumbnail,
+              child: CachedNetworkImage(
+                imageUrl: book.thumbnail,
                 height: 200,
                 width: 133,
                 fit: BoxFit.fill,

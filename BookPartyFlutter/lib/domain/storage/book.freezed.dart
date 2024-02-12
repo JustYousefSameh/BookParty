@@ -14,13 +14,19 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Book _$BookFromJson(Map<String, dynamic> json) {
+  return _Book.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Book {
   String get title => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get thumbnail => throw _privateConstructorUsedError;
+  String get url => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $BookCopyWith<Book> get copyWith => throw _privateConstructorUsedError;
 }
@@ -31,7 +37,11 @@ abstract class $BookCopyWith<$Res> {
       _$BookCopyWithImpl<$Res, Book>;
   @useResult
   $Res call(
-      {String title, String author, String description, String thumbnail});
+      {String title,
+      String author,
+      String description,
+      String thumbnail,
+      String url});
 }
 
 /// @nodoc
@@ -51,6 +61,7 @@ class _$BookCopyWithImpl<$Res, $Val extends Book>
     Object? author = null,
     Object? description = null,
     Object? thumbnail = null,
+    Object? url = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -69,6 +80,10 @@ class _$BookCopyWithImpl<$Res, $Val extends Book>
           ? _value.thumbnail
           : thumbnail // ignore: cast_nullable_to_non_nullable
               as String,
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -81,7 +96,11 @@ abstract class _$$BookImplCopyWith<$Res> implements $BookCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String title, String author, String description, String thumbnail});
+      {String title,
+      String author,
+      String description,
+      String thumbnail,
+      String url});
 }
 
 /// @nodoc
@@ -98,6 +117,7 @@ class __$$BookImplCopyWithImpl<$Res>
     Object? author = null,
     Object? description = null,
     Object? thumbnail = null,
+    Object? url = null,
   }) {
     return _then(_$BookImpl(
       title: null == title
@@ -116,19 +136,27 @@ class __$$BookImplCopyWithImpl<$Res>
           ? _value.thumbnail
           : thumbnail // ignore: cast_nullable_to_non_nullable
               as String,
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$BookImpl extends _Book {
   const _$BookImpl(
       {required this.title,
       required this.author,
       required this.description,
-      required this.thumbnail})
+      required this.thumbnail,
+      required this.url})
       : super._();
+
+  factory _$BookImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BookImplFromJson(json);
 
   @override
   final String title;
@@ -138,10 +166,12 @@ class _$BookImpl extends _Book {
   final String description;
   @override
   final String thumbnail;
+  @override
+  final String url;
 
   @override
   String toString() {
-    return 'Book(title: $title, author: $author, description: $description, thumbnail: $thumbnail)';
+    return 'Book(title: $title, author: $author, description: $description, thumbnail: $thumbnail, url: $url)';
   }
 
   @override
@@ -154,18 +184,27 @@ class _$BookImpl extends _Book {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.thumbnail, thumbnail) ||
-                other.thumbnail == thumbnail));
+                other.thumbnail == thumbnail) &&
+            (identical(other.url, url) || other.url == url));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, title, author, description, thumbnail);
+      Object.hash(runtimeType, title, author, description, thumbnail, url);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$BookImplCopyWith<_$BookImpl> get copyWith =>
       __$$BookImplCopyWithImpl<_$BookImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Book extends Book {
@@ -173,8 +212,11 @@ abstract class _Book extends Book {
       {required final String title,
       required final String author,
       required final String description,
-      required final String thumbnail}) = _$BookImpl;
+      required final String thumbnail,
+      required final String url}) = _$BookImpl;
   const _Book._() : super._();
+
+  factory _Book.fromJson(Map<String, dynamic> json) = _$BookImpl.fromJson;
 
   @override
   String get title;
@@ -184,6 +226,8 @@ abstract class _Book extends Book {
   String get description;
   @override
   String get thumbnail;
+  @override
+  String get url;
   @override
   @JsonKey(ignore: true)
   _$$BookImplCopyWith<_$BookImpl> get copyWith =>

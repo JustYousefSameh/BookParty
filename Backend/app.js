@@ -1,79 +1,105 @@
-const { log } = require("console");
-const { json } = require("express");
-const { runInThisContext } = require("vm");
-
 const httpServer = require("http").createServer();
 const io = require("socket.io")(httpServer, {
   cors: { origin: "*" },
 });
 
-io.rooms = {};
+io.rooms = {
+  "0000": {
+    data: {
+      roomID: 0o0,
+      roomStarted: false,
+      pageNumber: 0,
+      users: [],
+      book: {},
+    },
+    sockets: [],
+  },
+};
+
+httpServer.listen(5000, () => console.log("Listening on Port:5000"));
+
 io.on("connection", (socket) => {
   console.log("User connected");
 
   socket.on("create", (roomToCreate) => {
-    let roominfo = roomToCreate;
     let roomID = Math.floor(Math.random() * 9000 + 1000);
+    io["rooms"][roomID] = {};
+    let serverSideRoomData = io["rooms"][roomID];
 
-    console.log(`${roominfo["user"]["name"]} Created room ${roomID}`);
+    console.log(`${roomToCreate["users"][0]["name"]} Created room ${roomID}`);
 
-    io["rooms"][roomID] = {
-      users: [roominfo["user"]],
-      sockets: [socket],
-    };
+    //Set roomID
+    roomToCreate["roomID"] = roomID;
 
-    console.log(io["rooms"][roomID]["users"]);
+    serverSideRoomData["data"] = roomToCreate;
+    serverSideRoomData["sockets"] = [socket];
 
-    socket.emit("roominfo", {
-      roomID: roomID,
-      users: io["rooms"][roomID]["users"],
-    });
+    console.log(io["rooms"][roomID]["data"]);
+
     //Send data to user
+    socket.emit("roominfo", serverSideRoomData["data"]);
+
     socket.room = roomID;
-    socket.userID = roominfo["user"]["id"];
+    socket.userID = roomToCreate["users"][0]["id"];
   });
 
   //JOINING
   socket.on("join", (roomToJoin) => {
     let roomID = roomToJoin["roomID"];
+    let serverSideRoomData = io["rooms"][roomID];
 
-    if (io["rooms"][roomID] !== undefined) {
-      console.log(`User ${roomToJoin["user"]} joined room ${roomID}`);
+    if (serverSideRoomData !== undefined) {
+      console.log(
+        `User ${roomToJoin["users"][0]["name"]} joined room ${roomID}`
+      );
 
-      io["rooms"][roomID]["users"].push(roomToJoin["user"]);
-      io["rooms"][roomID]["sockets"].push(socket);
+      serverSideRoomData["data"]["users"].push(roomToJoin["users"][0]);
+      serverSideRoomData["sockets"].push(socket);
 
       socket.room = roomID;
-      socket.userID = roomToJoin["user"]["id"];
+      socket.userID = roomToJoin["users"][0]["id"];
 
       //Send data to all Users
-      io.notifyRoomMembers(io["rooms"][roomID], roomID);
-      console.log({
-        roomID: roomID,
-        users: io["rooms"][roomID]["users"],
-      });
+      io.notifyRoomMembers(serverSideRoomData);
+      console.log(serverSideRoomData["data"]);
     }
   });
 
-  socket.on("update", (updatedData) => {
+  socket.on("updateUserState", (updatedData) => {
     let roomID = socket.room;
-    let currentUser = io.rooms[roomID]["users"].find(
+    let serverSideRoomData = io["rooms"][roomID];
+
+    let currentUser = serverSideRoomData["data"]["users"].find(
       (value) => value["id"] == socket.userID
     );
-    let currentUserIndex = io.rooms[roomID]["users"].indexOf(currentUser);
+    let currentUserIndex =
+      serverSideRoomData["data"]["users"].indexOf(currentUser);
 
-    io.rooms[roomID]["users"][currentUserIndex] = updatedData;
-    io.notifyRoomMembers(io["rooms"][roomID], roomID);
+    serverSideRoomData["data"]["users"][currentUserIndex] = updatedData;
+    if (io.checkIfAllReady(roomID)) {
+      serverSideRoomData["data"]["hasStarted"] = true;
+    }
+    io.notifyRoomMembers(serverSideRoomData);
+  });
+
+  socket.on("disconnect", (reason) => {
+    console.log(`User disconnected ${reason}`);
   });
 });
 
-io.notifyRoomMembers = function (roomData, roomID) {
+io.notifyRoomMembers = function (roomData) {
   roomData["sockets"].forEach((userScoket) =>
-    userScoket.emit("roominfo", {
-      roomID: roomID,
-      users: roomData["users"],
-    })
+    userScoket.emit("roominfo", roomData["data"])
   );
 };
 
-httpServer.listen(8080, () => console.log("Listening on Port:8080"));
+io.checkIfAllReady = function (roomID) {
+  let isAllReady = true;
+  io["rooms"][roomID]["data"]["users"].forEach((element) => {
+    if (element["isReady"] == false) {
+      isAllReady = false;
+    }
+  });
+
+  return isAllReady;
+};

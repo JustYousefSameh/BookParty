@@ -18,23 +18,26 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$RoomEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() createRoom,
+    required TResult Function(Book book) createRoom,
     required TResult Function(int roomID) joinRoom,
     required TResult Function() ready,
+    required TResult Function() leaveRoom,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? createRoom,
+    TResult? Function(Book book)? createRoom,
     TResult? Function(int roomID)? joinRoom,
     TResult? Function()? ready,
+    TResult? Function()? leaveRoom,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? createRoom,
+    TResult Function(Book book)? createRoom,
     TResult Function(int roomID)? joinRoom,
     TResult Function()? ready,
+    TResult Function()? leaveRoom,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$RoomEvent {
     required TResult Function(CreateRoom value) createRoom,
     required TResult Function(JoinRoom value) joinRoom,
     required TResult Function(Ready value) ready,
+    required TResult Function(LeaveRoom value) leaveRoom,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$RoomEvent {
     TResult? Function(CreateRoom value)? createRoom,
     TResult? Function(JoinRoom value)? joinRoom,
     TResult? Function(Ready value)? ready,
+    TResult? Function(LeaveRoom value)? leaveRoom,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$RoomEvent {
     TResult Function(CreateRoom value)? createRoom,
     TResult Function(JoinRoom value)? joinRoom,
     TResult Function(Ready value)? ready,
+    TResult Function(LeaveRoom value)? leaveRoom,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -84,6 +90,10 @@ abstract class _$$CreateRoomImplCopyWith<$Res> {
   factory _$$CreateRoomImplCopyWith(
           _$CreateRoomImpl value, $Res Function(_$CreateRoomImpl) then) =
       __$$CreateRoomImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Book book});
+
+  $BookCopyWith<$Res> get book;
 }
 
 /// @nodoc
@@ -93,63 +103,100 @@ class __$$CreateRoomImplCopyWithImpl<$Res>
   __$$CreateRoomImplCopyWithImpl(
       _$CreateRoomImpl _value, $Res Function(_$CreateRoomImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? book = null,
+  }) {
+    return _then(_$CreateRoomImpl(
+      null == book
+          ? _value.book
+          : book // ignore: cast_nullable_to_non_nullable
+              as Book,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BookCopyWith<$Res> get book {
+    return $BookCopyWith<$Res>(_value.book, (value) {
+      return _then(_value.copyWith(book: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$CreateRoomImpl with DiagnosticableTreeMixin implements CreateRoom {
-  const _$CreateRoomImpl();
+  const _$CreateRoomImpl(this.book);
+
+  @override
+  final Book book;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'RoomEvent.createRoom()';
+    return 'RoomEvent.createRoom(book: $book)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'RoomEvent.createRoom'));
+    properties
+      ..add(DiagnosticsProperty('type', 'RoomEvent.createRoom'))
+      ..add(DiagnosticsProperty('book', book));
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CreateRoomImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$CreateRoomImpl &&
+            (identical(other.book, book) || other.book == book));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, book);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CreateRoomImplCopyWith<_$CreateRoomImpl> get copyWith =>
+      __$$CreateRoomImplCopyWithImpl<_$CreateRoomImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() createRoom,
+    required TResult Function(Book book) createRoom,
     required TResult Function(int roomID) joinRoom,
     required TResult Function() ready,
+    required TResult Function() leaveRoom,
   }) {
-    return createRoom();
+    return createRoom(book);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? createRoom,
+    TResult? Function(Book book)? createRoom,
     TResult? Function(int roomID)? joinRoom,
     TResult? Function()? ready,
+    TResult? Function()? leaveRoom,
   }) {
-    return createRoom?.call();
+    return createRoom?.call(book);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? createRoom,
+    TResult Function(Book book)? createRoom,
     TResult Function(int roomID)? joinRoom,
     TResult Function()? ready,
+    TResult Function()? leaveRoom,
     required TResult orElse(),
   }) {
     if (createRoom != null) {
-      return createRoom();
+      return createRoom(book);
     }
     return orElse();
   }
@@ -160,6 +207,7 @@ class _$CreateRoomImpl with DiagnosticableTreeMixin implements CreateRoom {
     required TResult Function(CreateRoom value) createRoom,
     required TResult Function(JoinRoom value) joinRoom,
     required TResult Function(Ready value) ready,
+    required TResult Function(LeaveRoom value) leaveRoom,
   }) {
     return createRoom(this);
   }
@@ -170,6 +218,7 @@ class _$CreateRoomImpl with DiagnosticableTreeMixin implements CreateRoom {
     TResult? Function(CreateRoom value)? createRoom,
     TResult? Function(JoinRoom value)? joinRoom,
     TResult? Function(Ready value)? ready,
+    TResult? Function(LeaveRoom value)? leaveRoom,
   }) {
     return createRoom?.call(this);
   }
@@ -180,6 +229,7 @@ class _$CreateRoomImpl with DiagnosticableTreeMixin implements CreateRoom {
     TResult Function(CreateRoom value)? createRoom,
     TResult Function(JoinRoom value)? joinRoom,
     TResult Function(Ready value)? ready,
+    TResult Function(LeaveRoom value)? leaveRoom,
     required TResult orElse(),
   }) {
     if (createRoom != null) {
@@ -190,7 +240,12 @@ class _$CreateRoomImpl with DiagnosticableTreeMixin implements CreateRoom {
 }
 
 abstract class CreateRoom implements RoomEvent {
-  const factory CreateRoom() = _$CreateRoomImpl;
+  const factory CreateRoom(final Book book) = _$CreateRoomImpl;
+
+  Book get book;
+  @JsonKey(ignore: true)
+  _$$CreateRoomImplCopyWith<_$CreateRoomImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -265,9 +320,10 @@ class _$JoinRoomImpl with DiagnosticableTreeMixin implements JoinRoom {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() createRoom,
+    required TResult Function(Book book) createRoom,
     required TResult Function(int roomID) joinRoom,
     required TResult Function() ready,
+    required TResult Function() leaveRoom,
   }) {
     return joinRoom(roomID);
   }
@@ -275,9 +331,10 @@ class _$JoinRoomImpl with DiagnosticableTreeMixin implements JoinRoom {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? createRoom,
+    TResult? Function(Book book)? createRoom,
     TResult? Function(int roomID)? joinRoom,
     TResult? Function()? ready,
+    TResult? Function()? leaveRoom,
   }) {
     return joinRoom?.call(roomID);
   }
@@ -285,9 +342,10 @@ class _$JoinRoomImpl with DiagnosticableTreeMixin implements JoinRoom {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? createRoom,
+    TResult Function(Book book)? createRoom,
     TResult Function(int roomID)? joinRoom,
     TResult Function()? ready,
+    TResult Function()? leaveRoom,
     required TResult orElse(),
   }) {
     if (joinRoom != null) {
@@ -302,6 +360,7 @@ class _$JoinRoomImpl with DiagnosticableTreeMixin implements JoinRoom {
     required TResult Function(CreateRoom value) createRoom,
     required TResult Function(JoinRoom value) joinRoom,
     required TResult Function(Ready value) ready,
+    required TResult Function(LeaveRoom value) leaveRoom,
   }) {
     return joinRoom(this);
   }
@@ -312,6 +371,7 @@ class _$JoinRoomImpl with DiagnosticableTreeMixin implements JoinRoom {
     TResult? Function(CreateRoom value)? createRoom,
     TResult? Function(JoinRoom value)? joinRoom,
     TResult? Function(Ready value)? ready,
+    TResult? Function(LeaveRoom value)? leaveRoom,
   }) {
     return joinRoom?.call(this);
   }
@@ -322,6 +382,7 @@ class _$JoinRoomImpl with DiagnosticableTreeMixin implements JoinRoom {
     TResult Function(CreateRoom value)? createRoom,
     TResult Function(JoinRoom value)? joinRoom,
     TResult Function(Ready value)? ready,
+    TResult Function(LeaveRoom value)? leaveRoom,
     required TResult orElse(),
   }) {
     if (joinRoom != null) {
@@ -384,9 +445,10 @@ class _$ReadyImpl with DiagnosticableTreeMixin implements Ready {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() createRoom,
+    required TResult Function(Book book) createRoom,
     required TResult Function(int roomID) joinRoom,
     required TResult Function() ready,
+    required TResult Function() leaveRoom,
   }) {
     return ready();
   }
@@ -394,9 +456,10 @@ class _$ReadyImpl with DiagnosticableTreeMixin implements Ready {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? createRoom,
+    TResult? Function(Book book)? createRoom,
     TResult? Function(int roomID)? joinRoom,
     TResult? Function()? ready,
+    TResult? Function()? leaveRoom,
   }) {
     return ready?.call();
   }
@@ -404,9 +467,10 @@ class _$ReadyImpl with DiagnosticableTreeMixin implements Ready {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? createRoom,
+    TResult Function(Book book)? createRoom,
     TResult Function(int roomID)? joinRoom,
     TResult Function()? ready,
+    TResult Function()? leaveRoom,
     required TResult orElse(),
   }) {
     if (ready != null) {
@@ -421,6 +485,7 @@ class _$ReadyImpl with DiagnosticableTreeMixin implements Ready {
     required TResult Function(CreateRoom value) createRoom,
     required TResult Function(JoinRoom value) joinRoom,
     required TResult Function(Ready value) ready,
+    required TResult Function(LeaveRoom value) leaveRoom,
   }) {
     return ready(this);
   }
@@ -431,6 +496,7 @@ class _$ReadyImpl with DiagnosticableTreeMixin implements Ready {
     TResult? Function(CreateRoom value)? createRoom,
     TResult? Function(JoinRoom value)? joinRoom,
     TResult? Function(Ready value)? ready,
+    TResult? Function(LeaveRoom value)? leaveRoom,
   }) {
     return ready?.call(this);
   }
@@ -441,6 +507,7 @@ class _$ReadyImpl with DiagnosticableTreeMixin implements Ready {
     TResult Function(CreateRoom value)? createRoom,
     TResult Function(JoinRoom value)? joinRoom,
     TResult Function(Ready value)? ready,
+    TResult Function(LeaveRoom value)? leaveRoom,
     required TResult orElse(),
   }) {
     if (ready != null) {
@@ -455,42 +522,168 @@ abstract class Ready implements RoomEvent {
 }
 
 /// @nodoc
+abstract class _$$LeaveRoomImplCopyWith<$Res> {
+  factory _$$LeaveRoomImplCopyWith(
+          _$LeaveRoomImpl value, $Res Function(_$LeaveRoomImpl) then) =
+      __$$LeaveRoomImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LeaveRoomImplCopyWithImpl<$Res>
+    extends _$RoomEventCopyWithImpl<$Res, _$LeaveRoomImpl>
+    implements _$$LeaveRoomImplCopyWith<$Res> {
+  __$$LeaveRoomImplCopyWithImpl(
+      _$LeaveRoomImpl _value, $Res Function(_$LeaveRoomImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LeaveRoomImpl with DiagnosticableTreeMixin implements LeaveRoom {
+  const _$LeaveRoomImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'RoomEvent.leaveRoom()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'RoomEvent.leaveRoom'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LeaveRoomImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Book book) createRoom,
+    required TResult Function(int roomID) joinRoom,
+    required TResult Function() ready,
+    required TResult Function() leaveRoom,
+  }) {
+    return leaveRoom();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Book book)? createRoom,
+    TResult? Function(int roomID)? joinRoom,
+    TResult? Function()? ready,
+    TResult? Function()? leaveRoom,
+  }) {
+    return leaveRoom?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Book book)? createRoom,
+    TResult Function(int roomID)? joinRoom,
+    TResult Function()? ready,
+    TResult Function()? leaveRoom,
+    required TResult orElse(),
+  }) {
+    if (leaveRoom != null) {
+      return leaveRoom();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CreateRoom value) createRoom,
+    required TResult Function(JoinRoom value) joinRoom,
+    required TResult Function(Ready value) ready,
+    required TResult Function(LeaveRoom value) leaveRoom,
+  }) {
+    return leaveRoom(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(CreateRoom value)? createRoom,
+    TResult? Function(JoinRoom value)? joinRoom,
+    TResult? Function(Ready value)? ready,
+    TResult? Function(LeaveRoom value)? leaveRoom,
+  }) {
+    return leaveRoom?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CreateRoom value)? createRoom,
+    TResult Function(JoinRoom value)? joinRoom,
+    TResult Function(Ready value)? ready,
+    TResult Function(LeaveRoom value)? leaveRoom,
+    required TResult orElse(),
+  }) {
+    if (leaveRoom != null) {
+      return leaveRoom(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LeaveRoom implements RoomEvent {
+  const factory LeaveRoom() = _$LeaveRoomImpl;
+}
+
+/// @nodoc
 mixin _$RoomState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(Room room) roomJoined,
+    required TResult Function(Room room) roomStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(Room room)? roomJoined,
+    TResult? Function(Room room)? roomStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(Room room)? roomJoined,
+    TResult Function(Room room)? roomStarted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
+    required TResult Function(RoomStateInitial value) initial,
     required TResult Function(RoomJoined value) roomJoined,
+    required TResult Function(RoomStarted value) roomStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
+    TResult? Function(RoomStateInitial value)? initial,
     TResult? Function(RoomJoined value)? roomJoined,
+    TResult? Function(RoomStarted value)? roomStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
+    TResult Function(RoomStateInitial value)? initial,
     TResult Function(RoomJoined value)? roomJoined,
+    TResult Function(RoomStarted value)? roomStarted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -514,25 +707,27 @@ class _$RoomStateCopyWithImpl<$Res, $Val extends RoomState>
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$RoomStateInitialImplCopyWith<$Res> {
+  factory _$$RoomStateInitialImplCopyWith(_$RoomStateInitialImpl value,
+          $Res Function(_$RoomStateInitialImpl) then) =
+      __$$RoomStateInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$RoomStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$RoomStateInitialImplCopyWithImpl<$Res>
+    extends _$RoomStateCopyWithImpl<$Res, _$RoomStateInitialImpl>
+    implements _$$RoomStateInitialImplCopyWith<$Res> {
+  __$$RoomStateInitialImplCopyWithImpl(_$RoomStateInitialImpl _value,
+      $Res Function(_$RoomStateInitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$InitialImpl with DiagnosticableTreeMixin implements Initial {
-  const _$InitialImpl();
+class _$RoomStateInitialImpl
+    with DiagnosticableTreeMixin
+    implements RoomStateInitial {
+  const _$RoomStateInitialImpl();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -548,7 +743,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements Initial {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType && other is _$RoomStateInitialImpl);
   }
 
   @override
@@ -559,6 +754,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(Room room) roomJoined,
+    required TResult Function(Room room) roomStarted,
   }) {
     return initial();
   }
@@ -568,6 +764,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(Room room)? roomJoined,
+    TResult? Function(Room room)? roomStarted,
   }) {
     return initial?.call();
   }
@@ -577,6 +774,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(Room room)? roomJoined,
+    TResult Function(Room room)? roomStarted,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -588,8 +786,9 @@ class _$InitialImpl with DiagnosticableTreeMixin implements Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
+    required TResult Function(RoomStateInitial value) initial,
     required TResult Function(RoomJoined value) roomJoined,
+    required TResult Function(RoomStarted value) roomStarted,
   }) {
     return initial(this);
   }
@@ -597,8 +796,9 @@ class _$InitialImpl with DiagnosticableTreeMixin implements Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
+    TResult? Function(RoomStateInitial value)? initial,
     TResult? Function(RoomJoined value)? roomJoined,
+    TResult? Function(RoomStarted value)? roomStarted,
   }) {
     return initial?.call(this);
   }
@@ -606,8 +806,9 @@ class _$InitialImpl with DiagnosticableTreeMixin implements Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
+    TResult Function(RoomStateInitial value)? initial,
     TResult Function(RoomJoined value)? roomJoined,
+    TResult Function(RoomStarted value)? roomStarted,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -617,8 +818,8 @@ class _$InitialImpl with DiagnosticableTreeMixin implements Initial {
   }
 }
 
-abstract class Initial implements RoomState {
-  const factory Initial() = _$InitialImpl;
+abstract class RoomStateInitial implements RoomState {
+  const factory RoomStateInitial() = _$RoomStateInitialImpl;
 }
 
 /// @nodoc
@@ -705,6 +906,7 @@ class _$RoomJoinedImpl with DiagnosticableTreeMixin implements RoomJoined {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(Room room) roomJoined,
+    required TResult Function(Room room) roomStarted,
   }) {
     return roomJoined(room);
   }
@@ -714,6 +916,7 @@ class _$RoomJoinedImpl with DiagnosticableTreeMixin implements RoomJoined {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(Room room)? roomJoined,
+    TResult? Function(Room room)? roomStarted,
   }) {
     return roomJoined?.call(room);
   }
@@ -723,6 +926,7 @@ class _$RoomJoinedImpl with DiagnosticableTreeMixin implements RoomJoined {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(Room room)? roomJoined,
+    TResult Function(Room room)? roomStarted,
     required TResult orElse(),
   }) {
     if (roomJoined != null) {
@@ -734,8 +938,9 @@ class _$RoomJoinedImpl with DiagnosticableTreeMixin implements RoomJoined {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
+    required TResult Function(RoomStateInitial value) initial,
     required TResult Function(RoomJoined value) roomJoined,
+    required TResult Function(RoomStarted value) roomStarted,
   }) {
     return roomJoined(this);
   }
@@ -743,8 +948,9 @@ class _$RoomJoinedImpl with DiagnosticableTreeMixin implements RoomJoined {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Initial value)? initial,
+    TResult? Function(RoomStateInitial value)? initial,
     TResult? Function(RoomJoined value)? roomJoined,
+    TResult? Function(RoomStarted value)? roomStarted,
   }) {
     return roomJoined?.call(this);
   }
@@ -752,8 +958,9 @@ class _$RoomJoinedImpl with DiagnosticableTreeMixin implements RoomJoined {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
+    TResult Function(RoomStateInitial value)? initial,
     TResult Function(RoomJoined value)? roomJoined,
+    TResult Function(RoomStarted value)? roomStarted,
     required TResult orElse(),
   }) {
     if (roomJoined != null) {
@@ -769,5 +976,162 @@ abstract class RoomJoined implements RoomState {
   Room get room;
   @JsonKey(ignore: true)
   _$$RoomJoinedImplCopyWith<_$RoomJoinedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RoomStartedImplCopyWith<$Res> {
+  factory _$$RoomStartedImplCopyWith(
+          _$RoomStartedImpl value, $Res Function(_$RoomStartedImpl) then) =
+      __$$RoomStartedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Room room});
+
+  $RoomCopyWith<$Res> get room;
+}
+
+/// @nodoc
+class __$$RoomStartedImplCopyWithImpl<$Res>
+    extends _$RoomStateCopyWithImpl<$Res, _$RoomStartedImpl>
+    implements _$$RoomStartedImplCopyWith<$Res> {
+  __$$RoomStartedImplCopyWithImpl(
+      _$RoomStartedImpl _value, $Res Function(_$RoomStartedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? room = null,
+  }) {
+    return _then(_$RoomStartedImpl(
+      null == room
+          ? _value.room
+          : room // ignore: cast_nullable_to_non_nullable
+              as Room,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RoomCopyWith<$Res> get room {
+    return $RoomCopyWith<$Res>(_value.room, (value) {
+      return _then(_value.copyWith(room: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$RoomStartedImpl with DiagnosticableTreeMixin implements RoomStarted {
+  const _$RoomStartedImpl(this.room);
+
+  @override
+  final Room room;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'RoomState.roomStarted(room: $room)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'RoomState.roomStarted'))
+      ..add(DiagnosticsProperty('room', room));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RoomStartedImpl &&
+            (identical(other.room, room) || other.room == room));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, room);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RoomStartedImplCopyWith<_$RoomStartedImpl> get copyWith =>
+      __$$RoomStartedImplCopyWithImpl<_$RoomStartedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(Room room) roomJoined,
+    required TResult Function(Room room) roomStarted,
+  }) {
+    return roomStarted(room);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(Room room)? roomJoined,
+    TResult? Function(Room room)? roomStarted,
+  }) {
+    return roomStarted?.call(room);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Room room)? roomJoined,
+    TResult Function(Room room)? roomStarted,
+    required TResult orElse(),
+  }) {
+    if (roomStarted != null) {
+      return roomStarted(room);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RoomStateInitial value) initial,
+    required TResult Function(RoomJoined value) roomJoined,
+    required TResult Function(RoomStarted value) roomStarted,
+  }) {
+    return roomStarted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RoomStateInitial value)? initial,
+    TResult? Function(RoomJoined value)? roomJoined,
+    TResult? Function(RoomStarted value)? roomStarted,
+  }) {
+    return roomStarted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RoomStateInitial value)? initial,
+    TResult Function(RoomJoined value)? roomJoined,
+    TResult Function(RoomStarted value)? roomStarted,
+    required TResult orElse(),
+  }) {
+    if (roomStarted != null) {
+      return roomStarted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RoomStarted implements RoomState {
+  const factory RoomStarted(final Room room) = _$RoomStartedImpl;
+
+  Room get room;
+  @JsonKey(ignore: true)
+  _$$RoomStartedImplCopyWith<_$RoomStartedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
